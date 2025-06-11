@@ -53,3 +53,20 @@ jobs:
           node-version: 20
       - run: npm install rollup rollup-plugin-dts
       - run: npx rollup index.d.ts -p rollup-plugin-dts -d temp
+  link-checker:
+    name: Link Checker
+    uses: lycheeverse/lychee-action@v2
+    with:
+      # Check all markdown, html and reStructuredText files in repo (default)
+      args: --base . --verbose --no-progress './**/*.md' './**/*.html' './**/*.rst'
+      # Use json as output format (instead of markdown)
+      format: json
+      # Use different output file path
+      output: /tmp/foo.txt
+      # Use a custom GitHub token, which
+      token: ${{ secrets.CUSTOM_TOKEN }}
+      # Don't fail action on broken links
+      fail: false
+      # Run lychee in a different directory.
+      # Note: This changes the lychee output directory as well.
+      workingDirectory: website/subdir
