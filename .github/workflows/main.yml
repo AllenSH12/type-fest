@@ -60,7 +60,6 @@ jobs:
       - uses: lycheeverse/lychee-action@v2
         with:
           format: markdown
-          fail: false
           args: >
             --no-progress
             --exclude 'https://lodash.com'
