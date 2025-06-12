@@ -1,0 +1,19 @@
+name: Check Links
+on:
+  schedule:
+    # Every Thursday at 21.15
+    - cron: '15 21 * * 4'
+  workflow_dispatch:
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          format: markdown
+          args: >
+            --no-progress
+            --exclude 'https://lodash.com'
+            --exclude 'https://stackoverflow.com'
+            '**/*.md' './**/*.js' './**/*.ts'
