@@ -66,4 +66,3 @@ jobs:
             --exclude 'https://lodash.com'
             --exclude 'https://stackoverflow.com'
             '**/*.md' './**/*.js' './**/*.ts'
-      - run: cat ./lychee/out.md >> $GITHUB_STEP_SUMMARY
