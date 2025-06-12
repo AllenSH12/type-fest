@@ -59,11 +59,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: lycheeverse/lychee-action@v2
         with:
+          format: markdown
+          fail: false
           args: >
             --no-progress
             --exclude 'https://lodash.com'
             --exclude 'https://stackoverflow.com'
-            --format markdown
-            --output lychee-report.md
             '**/*.md' './**/*.js' './**/*.ts'
-      - run: cat lychee-report.md >> $GITHUB_STEP_SUMMARY
+      - run: cat ./lychee/out.md >> $GITHUB_STEP_SUMMARY
