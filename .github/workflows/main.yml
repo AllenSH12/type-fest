@@ -4,7 +4,7 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - "*"
   pull_request:
     branches:
       - main
@@ -33,8 +33,8 @@ jobs:
       fail-fast: false
       matrix:
         typescript-version:
-          - 'latest'
-          - '~5.8.0'
+          - "latest"
+          - "~5.8.0"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -53,3 +53,15 @@ jobs:
           node-version: 20
       - run: npm install rollup rollup-plugin-dts
       - run: npx rollup index.d.ts -p rollup-plugin-dts -d temp
+  link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          format: markdown
+          args: >
+            --no-progress
+            --exclude 'https://lodash.com'
+            --exclude 'https://stackoverflow.com'
+            '**/*.md' './**/*.js' './**/*.ts'
